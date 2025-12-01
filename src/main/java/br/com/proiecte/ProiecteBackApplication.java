@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 
 // não permite que o Spring Boot configure banco de dados e JPA
 // Inserido para testar a API
-@SpringBootApplication(exclude = {
+/*@SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class
-})
+})*/
 public class ProiecteBackApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProiecteBackApplication.class, args);
