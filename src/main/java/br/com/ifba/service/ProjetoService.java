@@ -1,7 +1,7 @@
-package br.com.proiecte.service;
+package br.com.ifba.service;
 
-import br.com.proiecte.model.Projeto;
-import br.com.proiecte.repository.ProjetoRepository;
+import br.com.ifba.model.Projeto;
+import br.com.ifba.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

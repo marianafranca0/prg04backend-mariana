@@ -1,9 +1,6 @@
-package br.com.proiecte;
+package br.com.ifba;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 // não permite que o Spring Boot configure banco de dados e JPA
 // Inserido para testar a API

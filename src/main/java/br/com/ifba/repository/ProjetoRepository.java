@@ -1,6 +1,6 @@
-package br.com.proiecte.repository;
+package br.com.ifba.repository;
 
-import br.com.proiecte.model.Projeto;
+import br.com.ifba.model.Projeto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
