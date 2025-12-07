@@ -5,6 +5,7 @@ import br.com.ifba.dto.ProjetoPostRequestDto;
 import br.com.ifba.mapper.ObjectMapperUtil;
 import br.com.ifba.model.Projeto;
 import br.com.ifba.service.ProjetoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,13 +24,12 @@ public class ProjetoController {
 
     // - POST: cria um projeto (recebe DTO de entrada, devolve DTO de saída).
     //   FLUXO =  Cliente envia JSON → vira DTO → vira entidade → salva → devolve DTO de resposta.
-    @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody ProjetoPostRequestDto projetoPostRequestDto){
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(objectMapperUtil.map(projetoService.save(
-                                (objectMapperUtil.map(projetoPostRequestDto, Projeto.class))),
-                                 ProjetoGetResponseDto.class));
+    @PostMapping("/save")
+    public ResponseEntity<ProjetoGetResponseDto> save(@Valid @RequestBody ProjetoPostRequestDto dto) {
+        Projeto projeto = objectMapperUtil.map(dto, Projeto.class);
+        Projeto salvo = projetoService.save(projeto);
+        ProjetoGetResponseDto response = objectMapperUtil.map(salvo, ProjetoGetResponseDto.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     // - GET: lista todos os projetos (devolve lista de DTOs de saída).

@@ -2,6 +2,7 @@ package br.com.ifba.service;
 
 import br.com.ifba.model.Projeto;
 import br.com.ifba.repository.ProjetoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class ProjetoService {
     public ProjetoRepository projetoRepository;
 
     // método save()
+    @Transactional
     public Projeto save(Projeto projeto){
         return projetoRepository.save(projeto);
 
@@ -37,6 +39,7 @@ public class ProjetoService {
     }
 
     // método delete()
+    @Transactional
     public void delete(Long id) {
         if (projetoRepository.existsById(id)) {
             projetoRepository.deleteById(id);
