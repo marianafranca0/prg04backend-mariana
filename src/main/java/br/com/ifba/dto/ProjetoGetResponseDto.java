@@ -12,9 +12,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProjetoGetResponseDto {
 
+        @JsonProperty(value = "id")
+        private Long id;
+
         @JsonProperty(value = "nome")
         private String nome;
 
         @JsonProperty(value = "descricao")
         private String descricao;
+
+        @JsonProperty(value = "cliente")
+        private ClienteGetResponseDto cliente;
 }

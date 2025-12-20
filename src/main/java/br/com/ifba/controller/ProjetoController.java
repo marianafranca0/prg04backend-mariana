@@ -6,29 +6,40 @@ import br.com.ifba.mapper.ObjectMapperUtil;
 import br.com.ifba.model.Projeto;
 import br.com.ifba.service.ProjetoService;
 import jakarta.validation.Valid;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import lombok.AllArgsConstructor;
+
 
 @RestController
 @RequestMapping("/projetos")
+@RequiredArgsConstructor
 public class ProjetoController {
-    @Autowired
-    ProjetoService projetoService;
 
-    @Autowired
-    ObjectMapperUtil objectMapperUtil;
+
+    private final ProjetoService projetoService;
+
+    private final ObjectMapperUtil objectMapperUtil;
 
     // - POST: cria um projeto (recebe DTO de entrada, devolve DTO de saída).
     //   FLUXO =  Cliente envia JSON → vira DTO → vira entidade → salva → devolve DTO de resposta.
     @PostMapping("/save")
-    public ResponseEntity<ProjetoGetResponseDto> save(@Valid @RequestBody ProjetoPostRequestDto dto) {
+    public ResponseEntity<ProjetoGetResponseDto> save(/*@Valid*/ @RequestBody ProjetoPostRequestDto dto) {
+
+        // DTO → entidade
         Projeto projeto = objectMapperUtil.map(dto, Projeto.class);
-        Projeto salvo = projetoService.save(projeto);
+
+        // chama o service
+        Projeto salvo = projetoService.save(projeto, dto.getIdCliente());
+
+        // entidade - DTO de resposta
         ProjetoGetResponseDto response = objectMapperUtil.map(salvo, ProjetoGetResponseDto.class);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

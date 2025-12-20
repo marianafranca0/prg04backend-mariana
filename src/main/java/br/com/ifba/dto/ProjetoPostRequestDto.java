@@ -19,5 +19,9 @@ public class ProjetoPostRequestDto {
 
         @JsonProperty(value = "descricao")
         private String descricao;
-    }
+
+        @JsonProperty(value = "idCliente")
+        private Long idCliente; // chave estrangeira para vincular ao cliente
+
+}
 

@@ -1,23 +1,37 @@
 package br.com.ifba.service;
 
+import br.com.ifba.model.Cliente;
 import br.com.ifba.model.Projeto;
+import br.com.ifba.repository.ClienteRepository;
 import br.com.ifba.repository.ProjetoRepository;
 import jakarta.transaction.Transactional;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
+
+
 @Service
+@RequiredArgsConstructor
 public class ProjetoService {
 
-    @Autowired
-    public ProjetoRepository projetoRepository;
+
+    private final ProjetoRepository projetoRepository;
+
+    private final ClienteRepository clienteRepository;
 
     // método save()
     @Transactional
-    public Projeto save(Projeto projeto){
+    public Projeto save(Projeto projeto, Long idCliente){
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        projeto.setCliente(cliente);
+
         return projetoRepository.save(projeto);
 
     }
