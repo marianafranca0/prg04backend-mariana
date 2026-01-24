@@ -11,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
+/* Entidade Projeto  */
 public class Projeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

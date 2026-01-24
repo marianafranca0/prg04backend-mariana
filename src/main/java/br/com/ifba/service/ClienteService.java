@@ -29,4 +29,10 @@ public class ClienteService {
     public List<Cliente> findAll(){
         return clienteRepository.findAll();
     }
+
+    public Cliente login(String email, String senha) {
+        return clienteRepository.findByEmailAndSenha(email, senha)
+                .orElseThrow(() -> new RuntimeException("Credenciais inválidas"));
+    }
+
 }

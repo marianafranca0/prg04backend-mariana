@@ -23,7 +23,6 @@ public class ProjetoController {
 
 
     private final ProjetoService projetoService;
-
     private final ObjectMapperUtil objectMapperUtil;
 
     // - POST: cria um projeto (recebe DTO de entrada, devolve DTO de saída).

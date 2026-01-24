@@ -43,6 +43,14 @@ public class ClienteController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<ClienteGetResponseDto> login(@RequestBody ClientePostRequestDto dto) {
+        Cliente cliente = clienteService.login(dto.getEmail(), dto.getSenha());
+        ClienteGetResponseDto response = objectMapperUtil.map(cliente, ClienteGetResponseDto.class);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping
     public ResponseEntity<List<ClienteGetResponseDto>> listarTodos() {
         List<Cliente> clientes = clienteService.findAll();

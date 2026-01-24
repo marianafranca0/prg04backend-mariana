@@ -1,9 +1,6 @@
 package br.com.ifba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +12,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 
-/* Entidade Cliente  */
-public class Cliente {
+/* Entidade Equipe  */
+public class Equipe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String senha;
-    private String email;
     private String nome;
-    private String telefone;
+    private String cargo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_projeto", nullable = false)
+    private Projeto projeto;
+
 }

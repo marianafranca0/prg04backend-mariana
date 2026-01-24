@@ -5,22 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-// --DTO que responde requisições REST.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteGetResponseDto {
-
+public class EquipeGetResponseDto {
     @JsonProperty(value = "id")
     private Long id;
 
     @JsonProperty(value = "nome")
     private String nome;
 
-    @JsonProperty(value = "email")
-    private String email;
+    @JsonProperty(value = "cargo")
+    private String cargo;
 
-    @JsonProperty(value = "telefone")
-    private String telefone;
+    @JsonProperty(value = "projeto")
+    private ProjetoGetResponseDto projeto; // vínculo ao projeto
+
 }
